@@ -1,0 +1,11 @@
+
+# Lab 0: Introduction to Diagrams with PlantText
+
+## 1. Objective
+![ClassDiagram](https://www.planttext.com/api/plantuml/png/P50x3i8m3Drp2eymz08LG_cCC24EO8XL8YKEIjns04x6m96u0arQK16BvVTal_Vir-DPHS4WZRFgP356E4GAS5K01JHzo-YeXBq4mtKcB_rGvuEUa03MruPdyn9Mtbj2_f2-aSIstcXrLwF3KZl3emMcVaijsH8CIzvpo5XJoX7_btVaZj-0BeDuDfSDIXyprIpH6khMdeNunp_VjhWLnP1XWWTPLH7hz8et0000__y30000)
+
+## 2. Class Diagram
+![UseCaseDiagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aK9eSMeHbEcOafkPnyLLMfoQd5YSgg3aav-UcQUaa5Yi4EfiY10EoqmjLt3Epoj9pIk1oXeXP7qJynBJKy765aDbZRcuG5m5NJkmGGYs4HVOIfW44iUOoo4rBmNaIYu00000__y30000)
+
+## 3. Package Diagram
+![PackageDiagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bT1Od9sOdggWb9eSMgHWczY7f2JcvfNegHGpQMWa9oJM5oi09A2SnnJSZFpu3pVrDmae6Gj5y8WnzAI3A01cSc99PdvUSZc-EIdP-O5fnQLPIQd8WlcbvR0H846WHrYKwEh2xKAmOTQ1XRGrRL3DGzP5Cb0XzIy590_kG00003__mC0)
