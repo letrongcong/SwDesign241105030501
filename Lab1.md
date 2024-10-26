@@ -135,19 +135,19 @@
       + Luồng cơ bản
          1. Nhân viên đăng nhập vào hệ thống.
          2. Nhân viên chọn phương thức thanh toán mong muốn:
-         3. Hệ thống hiển thị các tùy chọn phương thức thanh toán.
-         4. Nhân viên chọn một phương thức thanh toán và cung cấp thông tin cần thiết (địa chỉ nhận séc hoặc thông tin tài khoản ngân hàng nếu cần).
-         5. Hệ thống cập nhật thông tin nhân viên với phương thức thanh toán đã chọn.
-         6. Nhân viên muốn nhập thời gian làm việc cho kỳ thanh toán hiện tại:
-         7. Hệ thống lấy và hiển thị thời gian làm việc hiện tại cho nhân viên. Nếu không có thời gian làm việc cho kỳ thanh toán hiện tại, hệ thống tạo mới.
-         8. Hệ thống lấy và hiển thị danh sách các số tài khoản dự án từ cơ sở dữ liệu quản lý dự án.
-         9. Nhân viên chọn số tài khoản và nhập số giờ làm việc cho bất kỳ ngày nào trong khoảng thời gian.
-         10. Hệ thống lưu thời gian làm việc.
-         11. Gửi thời gian làm việc
-         12. Nhân viên yêu cầu hệ thống gửi thời gian làm việc.
-         13. Hệ thống gán ngày hiện tại cho thời gian làm việc và thay đổi trạng thái thành “đã gửi”.
-         14. Hệ thống xác thực số giờ làm việc, đảm bảo không vượt quá giới hạn cho phép.
-         15. Hệ thống lưu thời gian làm việc và làm cho nó trở nên chỉ đọc.
+            Hệ thống hiển thị các tùy chọn phương thức thanh toán.
+            Nhân viên chọn một phương thức thanh toán và cung cấp thông tin cần thiết (địa chỉ nhận séc hoặc thông tin tài khoản ngân hàng nếu cần).
+            Hệ thống cập nhật thông tin nhân viên với phương thức thanh toán đã chọn.
+         3. Nhân viên muốn nhập thời gian làm việc cho kỳ thanh toán hiện tại:
+            Hệ thống lấy và hiển thị thời gian làm việc hiện tại cho nhân viên. Nếu không có thời gian làm việc cho kỳ thanh toán hiện tại, hệ thống tạo mới.
+            Hệ thống lấy và hiển thị danh sách các số tài khoản dự án từ cơ sở dữ liệu quản lý dự án.
+            Nhân viên chọn số tài khoản và nhập số giờ làm việc cho bất kỳ ngày nào trong khoảng thời gian.
+            Hệ thống lưu thời gian làm việc.
+         4. Gửi thời gian làm việc
+            Nhân viên yêu cầu hệ thống gửi thời gian làm việc.
+            Hệ thống gán ngày hiện tại cho thời gian làm việc và thay đổi trạng thái thành “đã gửi”.
+            Hệ thống xác thực số giờ làm việc, đảm bảo không vượt quá giới hạn cho phép.
+            Hệ thống lưu thời gian làm việc và làm cho nó trở nên chỉ đọc.
       + Luồng thay thế
          1. Số giờ không hợp lệ: Nếu số giờ không hợp lệ được nhập (>24) hoặc vượt quá giới hạn, hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại.
          2. Thời gian làm việc đã được gửi: Nếu thời gian làm việc đã được gửi, hệ thống hiển thị bản sao chỉ đọc và thông báo cho nhân viên.
