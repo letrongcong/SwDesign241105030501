@@ -79,5 +79,7 @@
             bankName: Tên ngân hàng (nếu phương thức thanh toán là "direct deposit")
             accountNumber: Số tài khoản ngân hàng (nếu phương thức thanh toán là "direct deposit")
 ### e. Biểu đồ lớp mô tả lớp phân tích
-
-
+![lopPhanTich](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XTNKdvfNafYKQL2G69bRcfUYMzgIKP-Id1gJcfoIMP-NgYdGcAnWYDNSdvUIL5-3gegPuXWJceHI94J5r0YiwHImJMt82U_CZKL9EWC4uHg18cvS74vAkZgAZWfS3c1Q6SexQB0nUMGcfS2SXS0003__mC0)
+#### Giải thích:
+      - Mối quan hệ sử dụng giữa PaymentMethodSelectionUI và PaymentMethodController cho phép giao diện người dùng gửi yêu cầu đến lớp điều khiển để xử lý logic.
+      - Mối quan hệ thao tác giữa PaymentMethodController và các thực thể EmployeeEntity và Payment cho phép lớp điều khiển cập nhật và quản lý thông tin liên quan đến nhân viên và phương thức thanh toán.
