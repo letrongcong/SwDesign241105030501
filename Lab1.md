@@ -83,3 +83,75 @@
 #### Giải thích:
       - Mối quan hệ sử dụng giữa PaymentMethodSelectionUI và PaymentMethodController cho phép giao diện người dùng gửi yêu cầu đến lớp điều khiển để xử lý logic.
       - Mối quan hệ thao tác giữa PaymentMethodController và các thực thể EmployeeEntity và Payment cho phép lớp điều khiển cập nhật và quản lý thông tin liên quan đến nhân viên và phương thức thanh toán.
+## 4. Phân tích ca sử dụng Maintain Timecard
+### a. Các lớp phân tích cho ca sử dụng Selected Payment
+    -  Lớp Boundary: TimecardUI
+    -  Lớp Controller: TimecardController
+    -  Lớp Entities: Timecard, Employee, ChargeNumber
+### b. Biểu Sequence của ca sử dụng Select Payment
+![MaintainTimecard](https://www.planttext.com/api/plantuml/png/Z5CnQiCm5DrrYa_sNA13QU9uA8LExG4KsLW2MmwE7EgnTCXGEcJeL08neHGAWOPsieOE2hs7Jj0hLB9ZfmbrYGTZVR_t_lllsz_oysmiS2BIA4IOY3W1Dng5SURxQ1YdtCD91bSiyWbElEjpm6Fe8H9paSHXKtUgS-WdzdqV-LmmaJL2jkZKnPfZYuEww52S1Fvb6Wqh2HUXXjmzXHwSGAPUKo2wU4c1KrsiHX0mBUSGgaK44_Cu9QXdmNq3fkPynq5GBU_B-vmPEEQ_qILeQa2wo1dgMwfZgA4kdZF3KHyy0C5u6ntXKC151IFglHK6vYh51qRSzefR3KLQFZ4JYLUvSHit7kOKnYed52Ar14_BDQYS8nUwsu55eeibJBIyRGNtwoJtmjdNEyYS6CW3tyF0H2sEM42WvOhz0MYI2B_UqjRC_jbz9Tn6FEX_oDkr5nHdi9bf-SZAx7AxRAfoAwqM9i3EPcQcBbcT7Ut6n5esNvDM3yUDs6oZb2m3vLkJP-OBi7_Z3m000F__0m00)
+### c. Nhiệm vụ của từng lớp phân tích:
+      - TimecardUI (Boundary): Chứa các phương thức để hiển thị thông tin thời gian làm việc, nhập giờ làm việc và gửi thời gian làm việc.
+      - TimecardController (Controller): Chứa các phương thức để xử lý việc lấy thời gian làm việc, tạo mới, xác thực và gửi thời gian làm việc.
+      - Employee (Entity): Lớp này chứa thông tin của nhân viên và phương thức để lấy thông tin thời gian làm việc.
+      - Timecard (Entity): Lưu trữ thông tin về số giờ làm việc và mã dự án. Nó có các phương thức để thiết lập giờ làm việc và gửi thời gian làm việc.
+      - ChargeNumber (Entity): Chứa thông tin về mã dự án, cho phép hệ thống quản lý các mã dự án mà nhân viên có thể ghi nhận giờ làm việc.
+### d. Một số thuộc tính của các lớp phân tích:
+      - TimecardUI (Boundary)
+            displayCurrentTimecard(): Phương thức hiển thị thời gian làm việc hiện tại cho nhân viên.
+            enterWorkedHours(): Phương thức cho phép nhân viên nhập số giờ làm việc.
+            submitTimecard(): Phương thức để gửi thời gian làm việc lên hệ thống.
+      - TimecardController (Controller)
+            retrieveTimecard(): Nhận một đối tượng Employee và trả về Timecard hiện tại của nhân viên.
+            createNewTimecard(): Nhận một đối tượng Employee và tạo một Timecard mới nếu chưa có.
+            validateWorkedHours(): Nhận số giờ làm việc và mã dự án, trả về true nếu hợp lệ, ngược lại trả về false.
+            submitTimecard(): Nhận một đối tượng Timecard và xử lý việc gửi thời gian làm việc.
+      - Employee (Entity)
+            id: String: ID duy nhất của nhân viên.
+            name: String: Tên của nhân viên.
+            getTimecard(): Timecard: Phương thức để lấy Timecard của nhân viên.
+      - Timecard (Entity)
+            hoursWorked: Map<Date, int>: Bản đồ lưu trữ số giờ làm việc cho từng ngày (khóa là ngày, giá trị là số giờ).
+            chargeNumbers: List<ChargeNumber>: Danh sách mã dự án liên quan đến thời gian làm việc.
+            status: String: Trạng thái của thời gian làm việc (ví dụ: "chưa gửi", "đã gửi").
+            setHours(date: Date, hours: int): Phương thức để thiết lập số giờ làm việc cho một ngày cụ thể.
+            submit(): Phương thức để gửi thời gian làm việc.
+      - ChargeNumber (Entity)
+            code: String: Mã của dự án.
+            description: String: Mô tả của mã dự án.
+### e. Biểu đồ lớp mô tả lớp phân tích
+![lopPhanTich](https://www.planttext.com/api/plantuml/png/H8wx3SCm34HxJi45l8CjMaMQLCa0j4Ka1lG9QAdmR2uoKbO81Cj9zN3lS0G_-xjVCsikmGDCgKJ7kk5j2JApkli5USK1vXIp9l_pT6GlMdi34lEI_xCgwPGsl7pQHAeSJqbFreTSIvYE4nPWmAv3Ws0ggN5ij0ZK2Br4Lz_z0W00__y30000)
+#### Giải thích:
+      - MMối quan hệ sử dụng giữa TimecardUI và TimecardController: Cho phép giao diện người dùng gửi yêu cầu nhập và gửi thông tin thời gian làm việc đến lớp điều khiển để xử lý.
+      - Mối quan hệ thao tác giữa TimecardController và các thực thể Timecard và Employee: Cho phép lớp điều khiển cập nhật và quản lý thông tin thời gian làm việc của nhân viên, cũng như liên kết với thông tin của nhân viên.
+      - Mối quan hệ thao tác giữa TimecardController và ChargeNumber: Cho phép lớp điều khiển truy xuất danh sách mã dự án để nhân viên ghi nhận giờ làm việc.
+
+## 5. Hợp nhất kết quả phân tích
+![hopnhat](https://www.planttext.com/api/plantuml/png/L93D3OCm34RldY8Bi0EG0Eg1gbBR0GAn2b9-gX0EpDP3H-eAnKgWvVIIvo-sbS_hdKz1-Z0R3T2vsIhf5tOR3VRIg_k9oOaLq3iRlDExv_6kqLEz1BHX3Bzd9FacA_FKRa4aAJR91-aVU9vD5rjKVyClSZ5hhCKmE7L5ZNqOdOshrFigXzHndsQRaZBaMe2QPTbQQmWYOhLGqA5aK19veaYi6F14oD4g-gOl0000__y30000)
+#### Tài Liệu Mô Tả Ca Sử Dụng
+   - Ca Sử Dụng: Quản Lý Thông Tin Nhân Viên và Thời Gian Làm Việc
+   - Mô tả ngắn gọn: Ca sử dụng này cho phép nhân viên cập nhật thông tin phương thức thanh toán và ghi nhận thời gian làm việc. Nhân viên có thể chọn phương thức thanh toán (nhận trực tiếp, qua bưu điện hoặc chuyển khoản) và ghi lại tất cả giờ làm việc hàng tuần cho các dự án mà họ đã làm việc. Nhân viên chỉ có thể thay đổi thông tin thời gian làm việc cho kỳ thanh toán hiện tại và trước khi thời gian làm việc đã được gửi.
+   - Luồng sự kiện
+      + Luồng cơ bản
+         1. Nhân viên đăng nhập vào hệ thống.
+         2. Nhân viên chọn phương thức thanh toán mong muốn:
+         3. Hệ thống hiển thị các tùy chọn phương thức thanh toán.
+         4. Nhân viên chọn một phương thức thanh toán và cung cấp thông tin cần thiết (địa chỉ nhận séc hoặc thông tin tài khoản ngân hàng nếu cần).
+         5. Hệ thống cập nhật thông tin nhân viên với phương thức thanh toán đã chọn.
+         6. Nhân viên muốn nhập thời gian làm việc cho kỳ thanh toán hiện tại:
+         7. Hệ thống lấy và hiển thị thời gian làm việc hiện tại cho nhân viên. Nếu không có thời gian làm việc cho kỳ thanh toán hiện tại, hệ thống tạo mới.
+         8. Hệ thống lấy và hiển thị danh sách các số tài khoản dự án từ cơ sở dữ liệu quản lý dự án.
+         9. Nhân viên chọn số tài khoản và nhập số giờ làm việc cho bất kỳ ngày nào trong khoảng thời gian.
+         10. Hệ thống lưu thời gian làm việc.
+         11. Gửi thời gian làm việc
+         12. Nhân viên yêu cầu hệ thống gửi thời gian làm việc.
+         13. Hệ thống gán ngày hiện tại cho thời gian làm việc và thay đổi trạng thái thành “đã gửi”.
+         14. Hệ thống xác thực số giờ làm việc, đảm bảo không vượt quá giới hạn cho phép.
+         15. Hệ thống lưu thời gian làm việc và làm cho nó trở nên chỉ đọc.
+      + Luồng thay thế
+         1. Số giờ không hợp lệ: Nếu số giờ không hợp lệ được nhập (>24) hoặc vượt quá giới hạn, hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại.
+         2. Thời gian làm việc đã được gửi: Nếu thời gian làm việc đã được gửi, hệ thống hiển thị bản sao chỉ đọc và thông báo cho nhân viên.
+         3. Cơ sở dữ liệu quản lý dự án không khả dụng: Hệ thống hiển thị thông báo lỗi về danh sách số tài khoản không khả dụng.
+   - Yêu cầu đặc biệt: Không có.
+   - Điều kiện trước: Nhân viên phải đăng nhập vào hệ thống trước khi bắt đầu ca sử dụng này.
+   - Điều kiện sau: Nếu ca sử dụng thành công, phương thức thanh toán và thông tin thời gian làm việc của nhân viên sẽ được cập nhật trong hệ thống. Nếu không, trạng thái hệ thống không thay đổi.
