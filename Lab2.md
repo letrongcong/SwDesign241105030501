@@ -71,3 +71,8 @@
 - ReportDisplay: 
     - Phương thức:
       - displayReportData(Report report): Hiển thị các dữ liệu tính toán báo cáo (số giờ làm việc hoặc tổng lương).
+
+### c.Mối quan hệ giữa các lớp
+- ReportController chịu trách nhiệm nhận yêu cầu từ ReportUI, lấy dữ liệu từ các lớp Report, Employee, ReportData, và chuyển đến các lớp giao diện (ReportDisplay, ErrorMessageDisplay).
+- Report có mối quan hệ kết hợp với Employee (để xác định người tạo) và ReportData (để chứa dữ liệu chi tiết).
+- ReportUI, ErrorMessageDisplay, và ReportDisplay là các giao diện hiển thị cho người dùng, nhận dữ liệu và thông báo từ ReportController.
