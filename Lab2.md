@@ -23,51 +23,51 @@
 
 ### d. Một số thuộc tính và phương thức của các lớp phân tích
 - ReportController:
-    Phương thức:
-      createReport(): Tạo báo cáo dựa trên yêu cầu của người dùng.
-      validateInput(): Kiểm tra tính hợp lệ của các thông tin đầu vào (loại báo cáo, ngày bắt đầu, ngày kết thúc, tên nhân viên).
-      saveReport(): Lưu báo cáo vào vị trí được chỉ định.
-      discardReport(): Hủy bỏ báo cáo nếu người dùng không muốn lưu.
-- Report: Lớp đại diện cho một báo cáo. Nó chứa thông tin về loại báo cáo, ngày bắt đầu và kết thúc, cùng với dữ liệu tính toán.
-    Thuộc tính:
-      reportType (String): Loại báo cáo (ví dụ: "Total Hours Worked", "Pay Year-to-Date").
-      startDate (Date): Ngày bắt đầu của báo cáo.
-      endDate (Date): Ngày kết thúc của báo cáo.
-      employeeList (List<Employee>): Danh sách các nhân viên cần báo cáo.
-      reportData (ReportData): Dữ liệu tính toán báo cáo.
-    Phương thức:
-      generateReport(): Tạo báo cáo bằng cách lấy dữ liệu từ các nhân viên trong phạm vi thời gian đã chỉ định.
-      saveToFile(String filePath): Lưu báo cáo vào tệp.
-      discard(): Hủy bỏ báo cáo.
+    - Phương thức:
+      - createReport(): Tạo báo cáo dựa trên yêu cầu của người dùng.
+      - validateInput(): Kiểm tra tính hợp lệ của các thông tin đầu vào (loại báo cáo, ngày bắt đầu, ngày kết thúc, tên nhân viên).
+      - saveReport(): Lưu báo cáo vào vị trí được chỉ định.
+      - discardReport(): Hủy bỏ báo cáo nếu người dùng không muốn lưu.
+- Report: 
+    - Thuộc tính:
+      - reportType (String): Loại báo cáo (ví dụ: "Total Hours Worked", "Pay Year-to-Date").
+      - startDate (Date): Ngày bắt đầu của báo cáo.
+      - endDate (Date): Ngày kết thúc của báo cáo.
+      - employeeList (List<Employee>): Danh sách các nhân viên cần báo cáo.
+      - reportData (ReportData): Dữ liệu tính toán báo cáo.
+    - Phương thức:
+      - generateReport(): Tạo báo cáo bằng cách lấy dữ liệu từ các nhân viên trong phạm vi thời gian đã chỉ định.
+      - saveToFile(String filePath): Lưu báo cáo vào tệp.
+      - discard(): Hủy bỏ báo cáo.
   
 - Employee:
-    Thuộc tính:
-      employeeId (String): Mã nhân viên.
-      employeeName (String): Tên nhân viên.
-      hoursWorked (float): Tổng số giờ làm việc (chỉ áp dụng cho báo cáo "Total Hours Worked").
-      payYTD (float): Tổng lương đã trả (chỉ áp dụng cho báo cáo "Pay Year-to-Date").
-    Phương thức:
-      calculateTotalHoursWorked(): Tính tổng số giờ làm việc của nhân viên trong khoảng thời gian được chỉ định.
-      calculatePayYTD(): Tính tổng lương đã trả cho nhân viên trong năm tài chính.
+    - Thuộc tính:
+      - employeeId (String): Mã nhân viên.
+      - employeeName (String): Tên nhân viên.
+      - hoursWorked (float): Tổng số giờ làm việc (chỉ áp dụng cho báo cáo "Total Hours Worked").
+      - payYTD (float): Tổng lương đã trả (chỉ áp dụng cho báo cáo "Pay Year-to-Date").
+    - Phương thức:
+      - calculateTotalHoursWorked(): Tính tổng số giờ làm việc của nhân viên trong khoảng thời gian được chỉ định.
+      - calculatePayYTD(): Tính tổng lương đã trả cho nhân viên trong năm tài chính.
 
 - ReportData:
-    Thuộc tính:
-      totalHoursWorked (float): Tổng số giờ làm việc trong báo cáo.
-      totalPayYTD (float): Tổng lương đã trả trong báo cáo.
-    Phương thức:
-      calculateHoursWorked(): Tính tổng số giờ làm việc.
-      calculatePayYTD(): Tính tổng lương đã trả.
+    - Thuộc tính:
+      - totalHoursWorked (float): Tổng số giờ làm việc trong báo cáo.
+      - totalPayYTD (float): Tổng lương đã trả trong báo cáo.
+    - Phương thức:
+      - calculateHoursWorked(): Tính tổng số giờ làm việc.
+      - calculatePayYTD(): Tính tổng lương đã trả.
 
 - ReportUI:
-    Phương thức:
-      requestReportCriteria(): Hiển thị giao diện yêu cầu người dùng nhập các tiêu chí cho báo cáo (loại báo cáo, ngày bắt đầu, ngày kết thúc, tên nhân viên).
-      showReport(Report report): Hiển thị báo cáo cho người dùng.
-      showErrorMessage(String message): Hiển thị thông báo lỗi nếu thông tin nhập vào không hợp lệ.
+    - Phương thức:
+      - requestReportCriteria(): Hiển thị giao diện yêu cầu người dùng nhập các tiêu chí cho báo cáo (loại báo cáo, ngày bắt đầu, ngày kết thúc, tên nhân viên).
+      - showReport(Report report): Hiển thị báo cáo cho người dùng.
+      - showErrorMessage(String message): Hiển thị thông báo lỗi nếu thông tin nhập vào không hợp lệ.
 
 - ErrorMessageDisplay:
-    Phương thức:
-      showError(String message): Hiển thị một thông báo lỗi cho người dùng.
+    - Phương thức:
+      - showError(String message): Hiển thị một thông báo lỗi cho người dùng.
 
 - ReportDisplay: 
-    Phương thức:
-      displayReportData(Report report): Hiển thị các dữ liệu tính toán báo cáo (số giờ làm việc hoặc tổng lương).
+    - Phương thức:
+      - displayReportData(Report report): Hiển thị các dữ liệu tính toán báo cáo (số giờ làm việc hoặc tổng lương).
