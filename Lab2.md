@@ -13,12 +13,10 @@
 ### c. Nhiệm vụ của từng lớp phân tích
 - Controller :
   - ReportController: Lớp chính điều khiển toàn bộ luồng tạo báo cáo, xác thực thông tin đầu vào và quyết định các hành động tiếp theo.
-
 - Entities :
   - Report: Lớp đại diện cho một báo cáo. Nó chứa thông tin về loại báo cáo, ngày bắt đầu và kết thúc, cùng với dữ liệu tính toán.
   - Employee: Lớp đại diện cho một nhân viên trong hệ thống, chứa các thông tin cần thiết để tạo báo cáo.
   - ReportData: Lớp chứa dữ liệu tính toán liên quan đến báo cáo, như tổng số giờ làm việc hoặc tổng lương.
-
 - Boundary :
   - ReportUI: Giao diện người dùng (UI) cho phép Quản trị viên Bảng Lương nhập thông tin để tạo báo cáo, ví dụ như loại báo cáo, ngày bắt đầu và kết thúc, và tên nhân viên.
   - ErrorMessageDisplay: Lớp hiển thị thông báo lỗi khi có thông tin thiếu hoặc sai trong quá trình nhập liệu.
@@ -97,3 +95,78 @@
 ### c. Nhiệm vụ của từng lớp phân tích
 - Controller :
   - EmployeeReportController: Lớp này sẽ xử lý các tương tác và quản lý quy trình tạo báo cáo cho nhân viên. Nó sẽ điều khiển luồng của ca sử dụng và tương tác với các lớp khác để lấy dữ liệu và tạo báo cáo.
+- Entities :
+  - Employee: Lớp này đại diện cho nhân viên đang sử dụng hệ thống, bao gồm các thuộc tính và phương thức liên quan như mã nhân viên và xác thực quyền.
+  - Project: Lớp này đại diện cho dự án và được sử dụng để lấy thông tin liên quan đến dự án (ví dụ: số charge).
+  - ReportCriteria: Lớp này sẽ lưu trữ và xác thực các tiêu chí báo cáo mà nhân viên cung cấp, bao gồm loại báo cáo, phạm vi ngày và số charge nếu cần.
+  - EmployeeReport: Lớp này đại diện cho đối tượng báo cáo thực tế, bao gồm các phương thức để tạo, lưu hoặc hủy báo cáo dựa trên tiêu chí.
+- Boundary :
+  - EmployeeInterface: Lớp này quản lý việc giao tiếp với nhân viên, bao gồm nhập thông tin báo cáo và hiển thị kết quả báo cáo, yêu cầu nhân viên lưu hoặc hủy báo cáo.
+  - ProjectManagementDatabase: Lớp này làm giao diện với cơ sở dữ liệu quản lý dự án để lấy danh sách các số charge có sẵn nếu loại báo cáo là "Tổng Giờ Làm Việc Cho Dự Án".
+  - FileSystemService: Lớp này chịu trách nhiệm lưu báo cáo vào vị trí và tên do nhân viên chỉ định.  
+
+### d. Một số thuộc tính và phương thức của các lớp phân tích
+- EmployeeReportController
+  - Thuộc tính:
+      - employee: Employee - đối tượng nhân viên hiện tại.
+      - criteria: ReportCriteria - tiêu chí báo cáo được cung cấp bởi nhân viên.
+      - report: EmployeeReport - báo cáo được tạo dựa trên tiêu chí.
+  - Phương thức:
+    - createReport(): Khởi tạo quá trình tạo báo cáo, bao gồm việc yêu cầu tiêu chí và xử lý báo cáo.
+    - validateEmployee(): Xác thực quyền của nhân viên trước khi cho phép tạo báo cáo.
+    - requestCriteria(): Yêu cầu và lấy tiêu chí báo cáo từ giao diện.
+    - generateReport(): Dựa trên tiêu chí, tạo báo cáo thông qua lớp EmployeeReport.
+    - saveReport(location: String): Lưu báo cáo vào vị trí chỉ định.
+    - discardReport(): Hủy bỏ báo cáo nếu không lưu.
+- Employee
+  - Thuộc tính:
+    - employeeId: String - mã định danh của nhân viên.
+    - name: String - tên của nhân viên.
+    - role: String - vai trò của nhân viên, dùng để xác thực quyền.
+  - Phương thức:
+    - isAuthorized(): Kiểm tra xem nhân viên có quyền tạo báo cáo hay không.
+    - getEmployeeDetails(): Lấy các thông tin cần thiết của nhân viên.
+- Project
+  - Thuộc tính:
+    - projectId: String - mã định danh của dự án.
+    - chargeNumber: String - mã số charge của dự án, dùng để tính giờ làm việc cho dự án.
+    - projectName: String - tên của dự án.
+  - Phương thức:
+    - getChargeNumbers(): Lấy danh sách các mã số charge của các dự án có sẵn từ cơ sở dữ liệu.
+    - findProjectById(projectId: String): Tìm dự án theo mã dự án.
+- ReportCriteria
+  - Thuộc tính:
+    - reportType: String - loại báo cáo (ví dụ: Tổng Giờ Làm Việc, Tổng Giờ Làm Việc Cho Dự Án, Nghỉ Phép/Ốm, Tổng Lương Tính Đến Hiện Tại).
+    - startDate: Date - ngày bắt đầu của báo cáo.
+    - endDate: Date - ngày kết thúc của báo cáo.
+    - chargeNumber: String - mã số charge (nếu báo cáo là "Tổng Giờ Làm Việc Cho Dự Án").
+  - Phương thức:
+    - validateCriteria(): Xác thực các tiêu chí (kiểm tra loại báo cáo, ngày tháng, số charge nếu cần).
+    - setCriteria(type: String, startDate: Date, endDate: Date, chargeNumber?: String): Thiết lập tiêu chí cho báo cáo.
+    - isComplete(): Kiểm tra tính đầy đủ của thông tin cần thiết để tạo báo cáo.
+- EmployeeReport
+  - Thuộc tính:
+    - reportData: Map<String, Object> - dữ liệu báo cáo chứa các giá trị và kết quả tính toán cho báo cáo.
+    - criteria: ReportCriteria - tiêu chí để tạo báo cáo.
+  - Phương thức:
+    - generate(criteria: ReportCriteria): Tạo báo cáo dựa trên tiêu chí đã cung cấp.
+    - display(): Hiển thị báo cáo cho nhân viên.
+    - save(location: String): Lưu báo cáo vào vị trí chỉ định.
+    - discard(): Hủy báo cáo nếu không cần lưu.
+- EmployeeInterface
+  - Thuộc tính:
+    - controller: EmployeeReportController - điều khiển chính để quản lý luồng của báo cáo.
+  - Phương thức:
+    - promptReportCriteria(): Hiển thị yêu cầu và các tùy chọn cho tiêu chí báo cáo.
+    - displayReport(report: EmployeeReport): Hiển thị báo cáo đã tạo cho nhân viên.
+    - promptSaveLocation(): Hiển thị yêu cầu nhập vị trí và tên file để lưu báo cáo.
+    - displayError(message: String): Hiển thị thông báo lỗi nếu có vấn đề trong quá trình tạo báo cáo.
+- ProjectManagementDatabase
+  - Phương thức:
+    - getAvailableChargeNumbers(): Truy xuất danh sách các mã số charge có sẵn từ cơ sở dữ liệu.
+    - findProjectChargeNumber(projectId: String): Lấy mã số charge cho một dự án cụ thể.
+- FileSystemService
+  - Phương thức:
+    - saveFile(location: String, data: Map<String, Object>): Lưu báo cáo vào vị trí chỉ định.
+    - deleteFile(location: String): Xóa tệp nếu không cần lưu.
+    - getFile(location: String): Lấy tệp từ vị trí chỉ định (nếu cần phục hồi hoặc xem lại).
