@@ -79,3 +79,14 @@
 
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/V94n3e9044NxFSLqLjo1A1GMDYGUO911DbbsoCmGmzaiF99NC1hNe47Q_z-VLypzUilLK6piWtCRAAZraM3BOsnG9ZW5L2M5bWMi8pZkNPswYWOMcoUb2Ck1LF5CXTSXuFIBf_WfgoYWUOxQ-K6X9hiGnQHqwJnasNkxusZ28P20Mr0jWr_QDMIMVAZ5gko7m1FHsh10mzJ_JzCbvtAApUi53m000F__0m00)
+
+
+## Phần 2 : Create Administrative Report
+
+### a. Các lớp phân tích
+-  Lớp Controller: EmployeeReportController
+-  Lớp Entities: Employee, Project, ReportCriteria, EmployeeReport
+-  Lớp Boundary: EmployeeInterface, ProjectManagementDatabase, FileSystemService
+
+### b. Biểu đồ sequence
+![BieuDoSequence](https://www.planttext.com/api/plantuml/png/d5NBRjGm5DtxAwwwvmUoG1LJe4X3XMY5OEdnc4cGOmyU9rAM5GiM28akM26aAHMgLAbgsKuMB5prF_m5_08tcKdp8fcKBAmazZbpxpddPlwaltSNXceJXO9GPfI6n-5Sg8HpCb6Hd5ATtBrv9WtNRodZX2bfj19tEo_vN6apMhyLN1CkJM1APF7yGgjtd9dYSGFJ0V86j0bQxvPbRC3FgQGp7kBXFMheX2ugbJu913zC5eQ7Xrp70LPA2ZPuyB3TY0Tlx4K4pAtE8p1kTQfWOd5Xk93MwIf5isCF7hdLbO6Rarwk9gnAwS5hUyh0-2xznK3wzeU4EB0Nyfyzj0iuA15OnksrIyyOkFGyWVTHuj9ZIGQLqI5EaD_xzdAeGXxi1oxz8FE6Fe5GA4bGWY6sIvZx-3B4ca7Ex3BPPjO17h-StwEMUi0y6DzULriXzVr-UM--s3CG3G92XO5nipM1hUqSkVIhdC5J5E4xZEqoX5Tu-v71o5UmXnw3FPOx1F3giwKpzTYDM_rCO4gb3mjC3gukFS6wg9xndBSJsw5lpR0csHPlHWZwB3jHlRQCSbjbvgwfkXkxz5jGe-HoEYp5wpqFZde7SO3Z_pF9NPAMB7bkgWFBrlBb-IgFRGl7bfdDYBCnYxCVDneLpVY7k5bCsW26chEj3_1cvcfZhqgwdAa56Zg8fL1SOAYhUlhvX-_-IXQvsM_W1mUlwhsooynwNFrMZdQHCVlJpQw_0000__y30000)
