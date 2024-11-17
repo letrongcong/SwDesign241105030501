@@ -265,3 +265,15 @@
 
 ### b. Biểu đồ sequence
 ![BieuDoSequence](https://www.planttext.com/api/plantuml/png/b5EzJiCm4Dxz5ATCC5JT6L2h94WCbQfMVG0JNy1IR1Vx2lApCV18l09s6YUcq8eENkw-l_iaVtryBXnnImVLCTwGiR3ctfgkMmebjNHaUHWor2J9mufBJU7LQjyPZrWQJH6C5hY3Ci7IEWxhD1nqjzuHghXPfqrGQQLLdAJHbUITUOxhYh6_ei3i7aguWsAB7JO48NIWmSrIYFbkBpZXl0eRmjk2bH7yqpSGD_XwG4U0AMKWyUAiMHqvjQPmuyYGkZL3uEGIKI73X243hlSS45KV-iMyGvFT2w8_k60LpD9bEnUy1f3BzQTUXK1nFl9H9IzZZ9NBRP2in3UygecL4RBrfvH9z6YRLpNMS37kXPmFKcUzFdbuh7vrAY8zzfcN-xzMJvoXjKQDcHUeHVmRtm000F__0m00)
+
+### c. Nhiệm vụ của từng lớp phân tích
+- Controller :
+  - MaintainEmployeeController: Chịu trách nhiệm điều khiển và xử lý các thao tác với thông tin nhân viên trong hệ thống.
+- Entities :
+  - Employee: Lớp này đại diện cho một nhân viên trong hệ thống, chứa tất cả các thông tin chi tiết của nhân viên.
+- Boundary :
+  - EmployeeInterface: Đây là lớp giao diện giữa người dùng (Payroll Administrator) và hệ thống. Giao diện này nhận thông tin từ người dùng và hiển thị thông báo hoặc kết quả sau khi thực hiện thao tác.
+
+### e. Mối quan hệ giữa các lớp
+- MaintainEmployeeController --> EmployeeInterface: Controller sử dụng Boundary để nhận thông tin và hiển thị thông báo.
+- MaintainEmployeeController --> Employee: Controller sử dụng Entities để thao tác với dữ liệu nhân viên.
