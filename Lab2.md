@@ -73,7 +73,7 @@
     - Phương thức:
       - displayReportData(Report report): Hiển thị các dữ liệu tính toán báo cáo (số giờ làm việc hoặc tổng lương).
 
-### c. Mối quan hệ giữa các lớp
+### e. Mối quan hệ giữa các lớp
 - ReportController chịu trách nhiệm nhận yêu cầu từ ReportUI, lấy dữ liệu từ các lớp Report, Employee, ReportData, và chuyển đến các lớp giao diện (ReportDisplay, ErrorMessageDisplay).
 - Report có mối quan hệ kết hợp với Employee (để xác định người tạo) và ReportData (để chứa dữ liệu chi tiết).
 - ReportUI, ErrorMessageDisplay, và ReportDisplay là các giao diện hiển thị cho người dùng, nhận dữ liệu và thông báo từ ReportController.
@@ -170,3 +170,17 @@
     - saveFile(location: String, data: Map<String, Object>): Lưu báo cáo vào vị trí chỉ định.
     - deleteFile(location: String): Xóa tệp nếu không cần lưu.
     - getFile(location: String): Lấy tệp từ vị trí chỉ định (nếu cần phục hồi hoặc xem lại).
+      
+### e. Mối quan hệ giữa các lớp
+- Controller và Entities:
+  - EmployeeReportController tương tác với các lớp Employee, ReportCriteria, EmployeeReport để lấy dữ liệu nhân viên, tiêu chí báo cáo và tạo báo cáo thực tế.
+- Controller và Boundary:
+  - EmployeeReportController sử dụng EmployeeInterface để hiển thị thông tin và nhận đầu vào từ nhân viên.
+  - ProjectManagementDatabase được sử dụng để truy xuất thông tin về dự án và các mã số charge.
+  - FileSystemService được sử dụng để lưu hoặc xóa báo cáo.
+- Entities và Boundary:
+  - Lớp ProjectManagementDatabase cung cấp thông tin dự án để lớp Project xử lý.
+  - FileSystemService lưu hoặc phục hồi báo cáo được tạo trong EmployeeReport.
+ 
+### f. Biểu đồ lớp mô tả lớp phân tích
+![BieuDoLopPhanTich]([https://www.planttext.com/api/plantuml/png/V94n3e9044NxFSLqLjo1A1GMDYGUO911DbbsoCmGmzaiF99NC1hNe47Q_z-VLypzUilLK6piWtCRAAZraM3BOsnG9ZW5L2M5bWMi8pZkNPswYWOMcoUb2Ck1LF5CXTSXuFIBf_WfgoYWUOxQ-K6X9hiGnQHqwJnasNkxusZ28P20Mr0jWr_QDMIMVAZ5gko7m1FHsh10mzJ_JzCbvtAApUi53m000F__0m00](https://www.planttext.com/api/plantuml/png/N93B3S9034JlMyKsa1xoZpWW8LA1anYqQ3_8wo2bDWwKH0jaCH29qqWppsFBp_iZZmp4ixDg2BEVW1RTkAiD2-BECz89HjGGTR7b1meN77aF7ixeq7CD30F4DrTkN6iizajaT3tIpKXFfSRWcOBzhJdYDH1NubgaHDLghJMytPBCvcj-9iYiznb8KVlF2vAYJgb2PzbQMOfK8dMIHgGLwLIEVag_U0400F__0m00))
