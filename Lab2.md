@@ -313,3 +313,6 @@ Lớp Boundary: EmployeeInterface
 ### e. Mối quan hệ giữa các lớp
 - MaintainEmployeeController --> EmployeeInterface: Controller sử dụng Boundary để nhận thông tin và hiển thị thông báo.
 - MaintainEmployeeController --> Employee: Controller sử dụng Entities để thao tác với dữ liệu nhân viên.
+
+### f. Biểu đồ lớp mô tả lớp phân tích
+![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/N8yz3i8m34PtdyBgpWKOK6aA4aC54YSmZO58-K6EAzIpCN0ahW0fGmM3f_S-V_RhyQopakWGF9pI42t9Y2Q5u79sARBTX9jF8_CkAikPUaRAk9xTmo3zbJBlnR9iauJ26-XJL4aUEt9HF_EZcI_qB4Ksm56T_gqgf0LOusAnGeDBhAOBg5UyExrMqCpaE9o2KqnJplAdp-SAp2IqHUWeqeN_2YmfLL1pjELvU0C00F__0m00)
