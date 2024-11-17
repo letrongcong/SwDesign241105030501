@@ -183,7 +183,7 @@
   - FileSystemService lưu hoặc phục hồi báo cáo được tạo trong EmployeeReport.
  
 ### f. Biểu đồ lớp mô tả lớp phân tích
-![BieuDoLopPhanTich]([https://www.planttext.com/api/plantuml/png/V94n3e9044NxFSLqLjo1A1GMDYGUO911DbbsoCmGmzaiF99NC1hNe47Q_z-VLypzUilLK6piWtCRAAZraM3BOsnG9ZW5L2M5bWMi8pZkNPswYWOMcoUb2Ck1LF5CXTSXuFIBf_WfgoYWUOxQ-K6X9hiGnQHqwJnasNkxusZ28P20Mr0jWr_QDMIMVAZ5gko7m1FHsh10mzJ_JzCbvtAApUi53m000F__0m00](https://www.planttext.com/api/plantuml/png/N93B3S9034JlMyKsa1xoZpWW8LA1anYqQ3_8wo2bDWwKH0jaCH29qqWppsFBp_iZZmp4ixDg2BEVW1RTkAiD2-BECz89HjGGTR7b1meN77aF7ixeq7CD30F4DrTkN6iizajaT3tIpKXFfSRWcOBzhJdYDH1NubgaHDLghJMytPBCvcj-9iYiznb8KVlF2vAYJgb2PzbQMOfK8dMIHgGLwLIEVag_U0400F__0m00))
+![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/N93B3S9034JlMyKsa1xoZpWW8LA1anYqQ3_8wo2bDWwKH0jaCH29qqWppsFBp_iZZmp4ixDg2BEVW1RTkAiD2-BECz89HjGGTR7b1meN77aF7ixeq7CD30F4DrTkN6iizajaT3tIpKXFfSRWcOBzhJdYDH1NubgaHDLghJMytPBCvcj-9iYiznb8KVlF2vAYJgb2PzbQMOfK8dMIHgGLwLIEVag_U0400F__0m00)
 
 ## Phần 3 : Login
 
