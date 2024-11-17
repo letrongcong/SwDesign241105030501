@@ -246,3 +246,12 @@
       → Hiển thị thông báo lỗi khi đăng nhập thất bại.
     - navigateToDashboard(): void
       → Chuyển người dùng sang giao diện chính nếu đăng nhập thành công.
+
+### e. Mối quan hệ giữa các lớp
+- LoginController là lớp điều phối trung tâm, giao tiếp với cả LoginScreen để nhận dữ liệu và AuthenticationService để xử lý xác thực.
+- AuthenticationService chịu trách nhiệm xác thực thông tin người dùng thông qua việc kiểm tra với lớp User.
+- LoginScreen chỉ hiển thị giao diện người dùng và thu thập dữ liệu, sau đó truyền cho LoginController để xử lý.
+- SystemState được sử dụng để quản lý trạng thái hệ thống sau khi đăng nhập thành công.
+
+### f. Biểu đồ lớp mô tả lớp phân tích
+![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/HCyx3i8m303GtQUmklS2JFqEI6mLx2QrQ4IQeCG5zMmC78ahKBSWDiVFlxoVho89HPb61-Sm-PxYZ8TmiRupaTaZ9Ip112ynk0tgxU4uAbR0NgpCU4nReluboaa63Gs93RxZUBU6jQBvR-hc93nsGh9A2r1YdcE5EypsNZYI4NnO6JAe51g54pdRQyToOQyRoAMlj-h7swffdOr9XsVGADVAzS3cYfEUkzHH1WNxNlyF7m000F__0m00)
