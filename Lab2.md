@@ -255,3 +255,13 @@
 
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/HCyx3i8m303GtQUmklS2JFqEI6mLx2QrQ4IQeCG5zMmC78ahKBSWDiVFlxoVho89HPb61-Sm-PxYZ8TmiRupaTaZ9Ip112ynk0tgxU4uAbR0NgpCU4nReluboaa63Gs93RxZUBU6jQBvR-hc93nsGh9A2r1YdcE5EypsNZYI4NnO6JAe51g54pdRQyToOQyRoAMlj-h7swffdOr9XsVGADVAzS3cYfEUkzHH1WNxNlyF7m000F__0m00)
+
+## Phần 4 : Maintain Employee Information
+
+### a. Các lớp phân tích
+-  Lớp Controller: MaintainEmployeeController
+-  Lớp Entities: Employee
+-  Lớp Boundary: EmployeeInterface
+
+### b. Biểu đồ sequence
+![BieuDoSequence](https://www.planttext.com/api/plantuml/png/b5EzJiCm4Dxz5ATCC5JT6L2h94WCbQfMVG0JNy1IR1Vx2lApCV18l09s6YUcq8eENkw-l_iaVtryBXnnImVLCTwGiR3ctfgkMmebjNHaUHWor2J9mufBJU7LQjyPZrWQJH6C5hY3Ci7IEWxhD1nqjzuHghXPfqrGQQLLdAJHbUITUOxhYh6_ei3i7aguWsAB7JO48NIWmSrIYFbkBpZXl0eRmjk2bH7yqpSGD_XwG4U0AMKWyUAiMHqvjQPmuyYGkZL3uEGIKI73X243hlSS45KV-iMyGvFT2w8_k60LpD9bEnUy1f3BzQTUXK1nFl9H9IzZZ9NBRP2in3UygecL4RBrfvH9z6YRLpNMS37kXPmFKcUzFdbuh7vrAY8zzfcN-xzMJvoXjKQDcHUeHVmRtm000F__0m00)
