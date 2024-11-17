@@ -82,7 +82,7 @@
 ![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/V94n3e9044NxFSLqLjo1A1GMDYGUO911DbbsoCmGmzaiF99NC1hNe47Q_z-VLypzUilLK6piWtCRAAZraM3BOsnG9ZW5L2M5bWMi8pZkNPswYWOMcoUb2Ck1LF5CXTSXuFIBf_WfgoYWUOxQ-K6X9hiGnQHqwJnasNkxusZ28P20Mr0jWr_QDMIMVAZ5gko7m1FHsh10mzJ_JzCbvtAApUi53m000F__0m00)
 
 
-## Phần 2 : Create Administrative Report
+## Phần 2 : Create Employee Report
 
 ### a. Các lớp phân tích
 -  Lớp Controller: EmployeeReportController
@@ -184,3 +184,65 @@
  
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![BieuDoLopPhanTich]([https://www.planttext.com/api/plantuml/png/V94n3e9044NxFSLqLjo1A1GMDYGUO911DbbsoCmGmzaiF99NC1hNe47Q_z-VLypzUilLK6piWtCRAAZraM3BOsnG9ZW5L2M5bWMi8pZkNPswYWOMcoUb2Ck1LF5CXTSXuFIBf_WfgoYWUOxQ-K6X9hiGnQHqwJnasNkxusZ28P20Mr0jWr_QDMIMVAZ5gko7m1FHsh10mzJ_JzCbvtAApUi53m000F__0m00](https://www.planttext.com/api/plantuml/png/N93B3S9034JlMyKsa1xoZpWW8LA1anYqQ3_8wo2bDWwKH0jaCH29qqWppsFBp_iZZmp4ixDg2BEVW1RTkAiD2-BECz89HjGGTR7b1meN77aF7ixeq7CD30F4DrTkN6iizajaT3tIpKXFfSRWcOBzhJdYDH1NubgaHDLghJMytPBCvcj-9iYiznb8KVlF2vAYJgb2PzbQMOfK8dMIHgGLwLIEVag_U0400F__0m00))
+
+## Phần 3 : Login
+
+### a. Các lớp phân tích
+-  Lớp Controller: LoginController
+-  Lớp Entities: User và AuthenticationService
+-  Lớp Boundary: LoginScreen
+ 
+### b. Biểu đồ sequence
+![BieuDoSequence](https://www.planttext.com/api/plantuml/png/X90zQWGn38Lxdq9Lkhr0Yh0XFn18DoIzHXQx1eszIFA6ETiMUwHS8J930e50N1XBdwNtU9-NwzuSrViY2ScRmfkn0XhqDBTUC-eAh-rGwaJAN0UHHAswDjd0mrR8DaQ9gnTVuRxxSJm9lRGwiPuByVY1ANNOtO70BJnLZx6A2yCDdD3iesbECZ05dlgy50SPCf3PiOWb6XI3lgEKZCuGplAGmg0ele5VNOY3iFjPIyIsTUdRocEna-0A6UquDmmRBCRmKi__R7iELrtvxssi6fakeOO7ZcXosiSrqlu2003__mC0)
+
+### c. Nhiệm vụ của từng lớp phân tích
+- Controller :
+  - LoginController: Điều phối luồng xử lý giữa giao diện (LoginScreen) và lớp logic xử lý.
+- Entities :
+  - User: Đại diện cho dữ liệu người dùng.
+  - AuthenticationService: Xử lý logic xác thực người dùng.
+- Boundary :
+  - LoginScreen: Là giao diện để người dùng tương tác với hệ thống.
+
+### d. Một số thuộc tính và phương thức của các lớp phân tích
+-  Lớp Controller: LoginController
+  - Thuộc tính:
+    - username: String - Tên đăng nhập do người dùng nhập.
+    - password: String - Mật khẩu do người dùng nhập.
+  - Phương thức:
+    - login(username: String, password: String): Boolean
+      → Thực hiện kiểm tra đăng nhập bằng cách gọi lớp AuthenticationService.
+    - displayMessage(message: String): void
+      → Hiển thị thông báo đăng nhập thành công hoặc lỗi.
+    - redirectToDashboard(): void
+      → Điều hướng người dùng đến màn hình dashboard sau khi đăng nhập thành công.
+- Lớp Entities
+  - Lớp User:
+    - Thuộc tính:
+      - username: String - Tên đăng nhập của người dùng.
+      - password: String - Mật khẩu của người dùng.
+    - Phương thức:
+      - getUsername(): String
+      → Lấy tên đăng nhập của người dùng.
+    - getPassword(): String
+      → Lấy mật khẩu của người dùng.
+- Lớp AuthenticationService:
+  - Thuộc tính:
+    - users: List<User> - Danh sách các tài khoản người dùng đã đăng ký.
+  - Phương thức:
+    - validateCredentials(username: String, password: String): Boolean
+      → Kiểm tra thông tin đăng nhập từ cơ sở dữ liệu và trả về kết quả (hợp lệ hoặc không hợp lệ).
+    - findUserByUsername(username: String): User?
+      → Tìm kiếm thông tin người dùng dựa trên tên đăng nhập.
+- Lớp Boundary: LoginScreen
+  - Thuộc tính:
+    - inputUsername: String - Dữ liệu nhập vào từ ô tên đăng nhập.
+    - inputPassword: String - Dữ liệu nhập vào từ ô mật khẩu.
+    - errorMessage: String - Thông báo lỗi hiển thị trên màn hình.
+  - Phương thức:
+    - captureInput(): void
+      → Lấy thông tin từ các ô nhập liệu (username và password).
+    - showErrorMessage(message: String): void
+      → Hiển thị thông báo lỗi khi đăng nhập thất bại.
+    - navigateToDashboard(): void
+      → Chuyển người dùng sang giao diện chính nếu đăng nhập thành công.
