@@ -273,6 +273,42 @@
   - Employee: Lớp này đại diện cho một nhân viên trong hệ thống, chứa tất cả các thông tin chi tiết của nhân viên.
 - Boundary :
   - EmployeeInterface: Đây là lớp giao diện giữa người dùng (Payroll Administrator) và hệ thống. Giao diện này nhận thông tin từ người dùng và hiển thị thông báo hoặc kết quả sau khi thực hiện thao tác.
+ 
+### d. Một số thuộc tính và phương thức của các lớp phân tích
+- Lớp Controller: MaintainEmployeeController
+  - Thuộc tính:
+    - employeeData: List<Employee>: Danh sách nhân viên trong hệ thống.
+  - Phương thức:
+    - addEmployee(employee: Employee): void: Thêm nhân viên mới.
+    - updateEmployee(employeeId: String, updatedInfo: Employee): void: Cập nhật thông tin nhân viên.
+    - deleteEmployee(employeeId: String): void: Xóa thông tin nhân viên.
+    - requestEmployeeInfo(): void: Yêu cầu thông tin nhân viên (cập nhật hoặc thêm).
+    - displayConfirmationMessage(message: String): void: Hiển thị thông báo xác nhận.
+- Entities: Employee
+  - Thuộc tính:
+    - employeeId: String: Mã nhân viên duy nhất.
+    - name: String: Tên nhân viên.
+    - employeeType: String: Loại nhân viên (hour, salaried, commissioned).
+    - mailingAddress: String: Địa chỉ của nhân viên.
+    - socialSecurityNumber: String: Số an sinh xã hội của nhân viên.
+    - phoneNumber: String: Số điện thoại của nhân viên.
+    - hourlyRate: Double: Mức lương theo giờ (nếu có).
+    - salary: Double: Mức lương cơ bản (nếu có).
+    - commissionRate: Double: Tỷ lệ hoa hồng (nếu có).
+    - otherDeductions: Double: Các khoản khấu trừ khác (401k, bảo hiểm).
+  - Phương thức:
+    - getEmployeeId(): String: Trả về mã nhân viên.
+    - getName(): String: Trả về tên nhân viên.
+    - getEmployeeType(): String: Trả về loại nhân viên.
+    - getMailingAddress(): String: Trả về địa chỉ của nhân viên.
+Lớp Boundary: EmployeeInterface
+  - Thuộc tính:
+    - errorMessage: String: Thông báo lỗi khi thao tác thất bại.
+  - Phương thức:
+    - displayEmployeeInfo(employee: Employee): void: Hiển thị thông tin nhân viên.
+    - requestEmployeeInfo(): void: Yêu cầu thông tin về nhân viên từ người dùng (cho thao tác thêm hoặc sửa).
+    - showErrorMessage(message: String): void: Hiển thị thông báo lỗi.
+    - showConfirmationMessage(message: String): void: Hiển thị thông báo xác nhận.
 
 ### e. Mối quan hệ giữa các lớp
 - MaintainEmployeeController --> EmployeeInterface: Controller sử dụng Boundary để nhận thông tin và hiển thị thông báo.
