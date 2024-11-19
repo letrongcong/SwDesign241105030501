@@ -341,45 +341,127 @@ Lớp Boundary: EmployeeInterface
   - SystemNotification: Lớp chịu trách nhiệm gửi thông báo lỗi hoặc thành công cho người dùng, ví dụ, khi không tìm thấy đơn hàng, khi có lỗi truy cập, hoặc khi thao tác thành công (ví dụ: "Đơn hàng đã được thêm thành công").
   - PurchaseOrderSearchUI: Cung cấp giao diện cho người dùng để tìm kiếm và truy cập đơn hàng theo ID, có thể là một biểu mẫu nhập ID đơn hàng hoặc bảng kết quả tìm kiếm.
 ### d. Một số thuộc tính và phương thức của các lớp phân tích
-- Lớp Controller: MaintainEmployeeController
-  - Thuộc tính:
-    - employeeData: List<Employee>: Danh sách nhân viên trong hệ thống.
+- Lớp Controller:
+  - PurchaseOrderController
+    - Thuộc tính:
+      - purchaseOrderService (PurchaseOrderService) – Cung cấp các phương thức xử lý logic liên quan đến đơn hàng.
+      - purchaseOrderRepository (PurchaseOrderRepository) – Lưu trữ và truy vấn dữ liệu đơn hàng từ cơ sở dữ liệu.
   - Phương thức:
-    - addEmployee(employee: Employee): void: Thêm nhân viên mới.
-    - updateEmployee(employeeId: String, updatedInfo: Employee): void: Cập nhật thông tin nhân viên.
-    - deleteEmployee(employeeId: String): void: Xóa thông tin nhân viên.
-    - requestEmployeeInfo(): void: Yêu cầu thông tin nhân viên (cập nhật hoặc thêm).
-    - displayConfirmationMessage(message: String): void: Hiển thị thông báo xác nhận.
-- Entities: Employee
+    - createPurchaseOrder(customerDetails, productDetails, billingAddress) – Xử lý việc tạo đơn hàng mới.
+    - updatePurchaseOrder(orderID, updatedDetails) – Cập nhật thông tin đơn hàng.
+    - deletePurchaseOrder(orderID) – Xóa đơn hàng khỏi hệ thống.
+    - getPurchaseOrder(orderID) – Truy xuất thông tin đơn hàng từ cơ sở dữ liệu.
+- OrderManagementController
   - Thuộc tính:
-    - employeeId: String: Mã nhân viên duy nhất.
-    - name: String: Tên nhân viên.
-    - employeeType: String: Loại nhân viên (hour, salaried, commissioned).
-    - mailingAddress: String: Địa chỉ của nhân viên.
-    - socialSecurityNumber: String: Số an sinh xã hội của nhân viên.
-    - phoneNumber: String: Số điện thoại của nhân viên.
-    - hourlyRate: Double: Mức lương theo giờ (nếu có).
-    - salary: Double: Mức lương cơ bản (nếu có).
-    - commissionRate: Double: Tỷ lệ hoa hồng (nếu có).
-    - otherDeductions: Double: Các khoản khấu trừ khác (401k, bảo hiểm).
+    - purchaseOrderController (PurchaseOrderController) – Điều phối các tác vụ cụ thể về đơn hàng.
+    - orderSearchService (OrderSearchService) – Cung cấp chức năng tìm kiếm đơn hàng.
   - Phương thức:
-    - getEmployeeId(): String: Trả về mã nhân viên.
-    - getName(): String: Trả về tên nhân viên.
-    - getEmployeeType(): String: Trả về loại nhân viên.
-    - getMailingAddress(): String: Trả về địa chỉ của nhân viên.
-Lớp Boundary: EmployeeInterface
-  - Thuộc tính:
-    - errorMessage: String: Thông báo lỗi khi thao tác thất bại.
-  - Phương thức:
-    - displayEmployeeInfo(employee: Employee): void: Hiển thị thông tin nhân viên.
-    - requestEmployeeInfo(): void: Yêu cầu thông tin về nhân viên từ người dùng (cho thao tác thêm hoặc sửa).
-    - showErrorMessage(message: String): void: Hiển thị thông báo lỗi.
-    - showConfirmationMessage(message: String): void: Hiển thị thông báo xác nhận.
+    - searchPurchaseOrders(searchCriteria) – Tìm kiếm các đơn hàng dựa trên tiêu chí (ví dụ: ID, khách hàng, trạng thái).
+    - closePurchaseOrder(orderID) – Đóng đơn hàng khi đã hoàn thành.
+    - cancelPurchaseOrder(orderID) – Hủy bỏ đơn hàng nếu có lỗi hoặc yêu cầu từ người dùng.
+- Entities:
+PurchaseOrder
+Trách nhiệm:
 
+Đại diện cho một đơn hàng trong hệ thống. Lớp này chứa các thuộc tính của đơn hàng và các phương thức xử lý logic liên quan đến đơn hàng.
+Thuộc tính:
+
+orderID (String) – Mã định danh duy nhất của đơn hàng.
+customer (Customer) – Thông tin khách hàng liên quan đến đơn hàng.
+products (List<Product>) – Danh sách các sản phẩm được mua trong đơn hàng.
+billingAddress (String) – Địa chỉ thanh toán của khách hàng.
+orderDate (Date) – Ngày tạo đơn hàng.
+status (OrderStatus) – Trạng thái của đơn hàng (OPEN, CLOSED, CANCELLED).
+commissionedEmployee (Employee) – Nhân viên chịu trách nhiệm cho đơn hàng.
+Phương thức:
+
+validateOrderDetails() – Kiểm tra tính hợp lệ của các chi tiết đơn hàng.
+updateOrderDetails(newDetails) – Cập nhật thông tin đơn hàng.
+deleteOrder() – Xóa đơn hàng khỏi hệ thống.
+generateOrderID() – Tạo mã đơn hàng duy nhất.
+
+
+Customer
+Trách nhiệm:
+
+Lớp này lưu trữ thông tin về khách hàng, bao gồm thông tin liên hệ và thông tin về giao dịch.
+Thuộc tính:
+
+customerID (String) – Mã định danh khách hàng.
+name (String) – Tên khách hàng.
+contact (String) – Số điện thoại hoặc địa chỉ email của khách hàng.
+billingAddress (String) – Địa chỉ thanh toán của khách hàng.
+Phương thức:
+
+updateContactDetails(newContact) – Cập nhật thông tin liên hệ của khách hàng.
+updateBillingAddress(newAddress) – Cập nhật địa chỉ thanh toán của khách hàng.
+
+
+ Product
+Trách nhiệm:
+
+Lớp này đại diện cho một sản phẩm trong hệ thống. Nó chứa thông tin về sản phẩm được mua trong đơn hàng.
+Thuộc tính:
+
+productID (String) – Mã sản phẩm duy nhất.
+productName (String) – Tên sản phẩm.
+price (Decimal) – Giá của một đơn vị sản phẩm.
+quantity (Integer) – Số lượng sản phẩm được mua.
+Phương thức:
+
+calculateTotalPrice() – Tính tổng giá trị của sản phẩm (số lượng * giá mỗi sản phẩm).
+updatePrice(newPrice) – Cập nhật giá của sản phẩm.
+Lớp Boundary: 
+
+PurchaseOrderUI
+Trách nhiệm:
+
+Giao diện người dùng cho phép Commissioned Employee (nhân viên được giao quyền quản lý đơn hàng) tạo, xem, cập nhật, hoặc xóa đơn hàng.
+Cung cấp các form và thông báo phù hợp để tương tác với người dùng.
+Phương thức:
+
+displayCreateOrderForm() – Hiển thị giao diện để nhân viên nhập thông tin tạo đơn hàng.
+displayOrderDetails(orderID) – Hiển thị chi tiết đơn hàng cho nhân viên.
+promptForUpdate(orderID) – Hiển thị giao diện cho phép nhân viên cập nhật đơn hàng.
+confirmDeleteOrder() – Yêu cầu nhân viên xác nhận việc xóa đơn hàng.
+
+
+
+SystemNotification
+Trách nhiệm:
+
+Cung cấp thông báo hệ thống cho người dùng, bao gồm các lỗi, cảnh báo, và các thông báo thành công.
+Phương thức:
+
+displaySuccessMessage(message) – Hiển thị thông báo thành công.
+displayErrorMessage(message) – Hiển thị thông báo lỗi.
+displayWarningMessage(message) – Hiển thị cảnh báo.
+
+
+PurchaseOrderSearchUI
+Trách nhiệm:
+
+Cung cấp giao diện để người dùng tìm kiếm đơn hàng. Cho phép nhân viên tìm kiếm đơn hàng theo các tiêu chí như ID đơn hàng, khách hàng, trạng thái đơn hàng, v.v.
+Phương thức:
+
+displaySearchForm() – Hiển thị giao diện để nhân viên nhập tiêu chí tìm kiếm.
+displaySearchResults(results) – Hiển thị kết quả tìm kiếm đơn hàng.
+Trách nhiệm chính:
+
+Tạo giao diện tìm kiếm đơn hàng và hiển thị kết quả tìm kiếm cho nhân viê
 ### e. Mối quan hệ giữa các lớp
-- MaintainEmployeeController --> EmployeeInterface: Controller sử dụng Boundary để nhận thông tin và hiển thị thông báo.
-- MaintainEmployeeController --> Employee: Controller sử dụng Entities để thao tác với dữ liệu nhân viên.
+Controller Classes:
+
+PurchaseOrderController phụ thuộc vào PurchaseOrder, PurchaseOrderService, và PurchaseOrderRepository để thực hiện các thao tác quản lý đơn hàng.
+OrderManagementController hợp tác với PurchaseOrderController và sử dụng OrderSearchService để thực hiện các thao tác tìm kiếm và quản lý đơn hàng nâng cao.
+Entities:
+
+PurchaseOrder có mối quan hệ 1-n với Customer (một đơn hàng thuộc về một khách hàng) và Aggregation với Product (một đơn hàng có thể chứa nhiều sản phẩm).
+PurchaseOrder có mối quan hệ 1-1 với CommissionedEmployee (một nhân viên chịu trách nhiệm cho một đơn hàng).
+Boundary Classes:
+
+PurchaseOrderUI, SystemNotification, và PurchaseOrderSearchUI là các lớp giao diện người dùng và thông báo, chúng hợp tác với các lớp Controller (như PurchaseOrderController và OrderManagementController) để thực hiện các thao tác liên quan đến đơn hàng và hiển thị thông tin cho người dùng.
 
 ### f. Biểu đồ lớp mô tả lớp phân tích
-![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/N8yz3i8m34PtdyBgpWKOK6aA4aC54YSmZO58-K6EAzIpCN0ahW0fGmM3f_S-V_RhyQopakWGF9pI42t9Y2Q5u79sARBTX9jF8_CkAikPUaRAk9xTmo3zbJBlnR9iauJ26-XJL4aUEt9HF_EZcI_qB4Ksm56T_gqgf0LOusAnGeDBhAOBg5UyExrMqCpaE9o2KqnJplAdp-SAp2IqHUWeqeN_2YmfLL1pjELvU0C00F__0m00)
+![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/L50xhi903Enz2YiD5HUWWYmyYGA1a3Y0IVnULjeFiXqXpaR1aRW2MOBWKRYOyNWyzlrwcwkHM1y3m0JhtAUMv88ka2eh7Dz4Zj6h-fouNSLJo1VcTJAMNseOIN7nqUvwQJfItahByfCbbdvT_5rE9Za4bd43D2E16_B9XleQ_QSU35mnM2Npzee7F8AlcQ9S5kMU0zaGLpj_KbZWT8eEPrWzGrDZYcTlNGNrktCO3gx05RmiU4E9_We5SqxjyqC03m000F__0m00)
 
