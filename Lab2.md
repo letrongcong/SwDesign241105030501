@@ -318,7 +318,7 @@ Lớp Boundary: EmployeeInterface
 ![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/N8yz3i8m34PtdyBgpWKOK6aA4aC54YSmZO58-K6EAzIpCN0ahW0fGmM3f_S-V_RhyQopakWGF9pI42t9Y2Q5u79sARBTX9jF8_CkAikPUaRAk9xTmo3zbJBlnR9iauJ26-XJL4aUEt9HF_EZcI_qB4Ksm56T_gqgf0LOusAnGeDBhAOBg5UyExrMqCpaE9o2KqnJplAdp-SAp2IqHUWeqeN_2YmfLL1pjELvU0C00F__0m00)
 
 
-## Phần 5 : Maintain Employee Information
+## Phần 5 : Maintain Purchase Order
 
 ### a. Các lớp phân tích
 -  Controller: PurchaseOrderController, OrderManagementController
@@ -360,108 +360,119 @@ Lớp Boundary: EmployeeInterface
     - closePurchaseOrder(orderID) – Đóng đơn hàng khi đã hoàn thành.
     - cancelPurchaseOrder(orderID) – Hủy bỏ đơn hàng nếu có lỗi hoặc yêu cầu từ người dùng.
 - Entities:
-PurchaseOrder
-Trách nhiệm:
-
-Đại diện cho một đơn hàng trong hệ thống. Lớp này chứa các thuộc tính của đơn hàng và các phương thức xử lý logic liên quan đến đơn hàng.
-Thuộc tính:
-
-orderID (String) – Mã định danh duy nhất của đơn hàng.
-customer (Customer) – Thông tin khách hàng liên quan đến đơn hàng.
-products (List<Product>) – Danh sách các sản phẩm được mua trong đơn hàng.
-billingAddress (String) – Địa chỉ thanh toán của khách hàng.
-orderDate (Date) – Ngày tạo đơn hàng.
-status (OrderStatus) – Trạng thái của đơn hàng (OPEN, CLOSED, CANCELLED).
-commissionedEmployee (Employee) – Nhân viên chịu trách nhiệm cho đơn hàng.
-Phương thức:
-
-validateOrderDetails() – Kiểm tra tính hợp lệ của các chi tiết đơn hàng.
-updateOrderDetails(newDetails) – Cập nhật thông tin đơn hàng.
-deleteOrder() – Xóa đơn hàng khỏi hệ thống.
-generateOrderID() – Tạo mã đơn hàng duy nhất.
-
-
-Customer
-Trách nhiệm:
-
-Lớp này lưu trữ thông tin về khách hàng, bao gồm thông tin liên hệ và thông tin về giao dịch.
-Thuộc tính:
-
-customerID (String) – Mã định danh khách hàng.
-name (String) – Tên khách hàng.
-contact (String) – Số điện thoại hoặc địa chỉ email của khách hàng.
-billingAddress (String) – Địa chỉ thanh toán của khách hàng.
-Phương thức:
-
-updateContactDetails(newContact) – Cập nhật thông tin liên hệ của khách hàng.
-updateBillingAddress(newAddress) – Cập nhật địa chỉ thanh toán của khách hàng.
-
-
- Product
-Trách nhiệm:
-
-Lớp này đại diện cho một sản phẩm trong hệ thống. Nó chứa thông tin về sản phẩm được mua trong đơn hàng.
-Thuộc tính:
-
-productID (String) – Mã sản phẩm duy nhất.
-productName (String) – Tên sản phẩm.
-price (Decimal) – Giá của một đơn vị sản phẩm.
-quantity (Integer) – Số lượng sản phẩm được mua.
-Phương thức:
-
-calculateTotalPrice() – Tính tổng giá trị của sản phẩm (số lượng * giá mỗi sản phẩm).
-updatePrice(newPrice) – Cập nhật giá của sản phẩm.
+  - PurchaseOrder
+    - Thuộc tính:
+      - orderID (String) – Mã định danh duy nhất của đơn hàng.
+      - customer (Customer) – Thông tin khách hàng liên quan đến đơn hàng.
+      - products (List<Product>) – Danh sách các sản phẩm được mua trong đơn hàng.
+      - billingAddress (String) – Địa chỉ thanh toán của khách hàng.
+      - orderDate (Date) – Ngày tạo đơn hàng.
+      - status (OrderStatus) – Trạng thái của đơn hàng (OPEN, CLOSED, CANCELLED).
+      - commissionedEmployee (Employee) – Nhân viên chịu trách nhiệm cho đơn hàng.
+    - Phương thức:
+      - validateOrderDetails() – Kiểm tra tính hợp lệ của các chi tiết đơn hàng.
+      - updateOrderDetails(newDetails) – Cập nhật thông tin đơn hàng.
+      - deleteOrder() – Xóa đơn hàng khỏi hệ thống.
+      - generateOrderID() – Tạo mã đơn hàng duy nhất.
+  - Customer
+    - Thuộc tính:
+      -customerID (String) – Mã định danh khách hàng.
+      - name (String) – Tên khách hàng.
+      - contact (String) – Số điện thoại hoặc địa chỉ email của khách hàng.
+      - billingAddress (String) – Địa chỉ thanh toán của khách hàng.
+    - Phương thức:
+      - updateContactDetails(newContact) – Cập nhật thông tin liên hệ của khách hàng.
+      - updateBillingAddress(newAddress) – Cập nhật địa chỉ thanh toán của khách hàng.
+   - Product
+    - Thuộc tính:
+      - productID (String) – Mã sản phẩm duy nhất.
+      - productName (String) – Tên sản phẩm.
+      - price (Decimal) – Giá của một đơn vị sản phẩm.
+      - quantity (Integer) – Số lượng sản phẩm được mua.
+    - Phương thức:
+      - calculateTotalPrice() – Tính tổng giá trị của sản phẩm (số lượng * giá mỗi sản phẩm).
+      - updatePrice(newPrice) – Cập nhật giá của sản phẩm.
 Lớp Boundary: 
-
-PurchaseOrderUI
-Trách nhiệm:
-
-Giao diện người dùng cho phép Commissioned Employee (nhân viên được giao quyền quản lý đơn hàng) tạo, xem, cập nhật, hoặc xóa đơn hàng.
-Cung cấp các form và thông báo phù hợp để tương tác với người dùng.
-Phương thức:
-
-displayCreateOrderForm() – Hiển thị giao diện để nhân viên nhập thông tin tạo đơn hàng.
-displayOrderDetails(orderID) – Hiển thị chi tiết đơn hàng cho nhân viên.
-promptForUpdate(orderID) – Hiển thị giao diện cho phép nhân viên cập nhật đơn hàng.
-confirmDeleteOrder() – Yêu cầu nhân viên xác nhận việc xóa đơn hàng.
-
-
-
-SystemNotification
-Trách nhiệm:
-
-Cung cấp thông báo hệ thống cho người dùng, bao gồm các lỗi, cảnh báo, và các thông báo thành công.
-Phương thức:
-
-displaySuccessMessage(message) – Hiển thị thông báo thành công.
-displayErrorMessage(message) – Hiển thị thông báo lỗi.
-displayWarningMessage(message) – Hiển thị cảnh báo.
-
-
-PurchaseOrderSearchUI
-Trách nhiệm:
-
-Cung cấp giao diện để người dùng tìm kiếm đơn hàng. Cho phép nhân viên tìm kiếm đơn hàng theo các tiêu chí như ID đơn hàng, khách hàng, trạng thái đơn hàng, v.v.
-Phương thức:
-
-displaySearchForm() – Hiển thị giao diện để nhân viên nhập tiêu chí tìm kiếm.
-displaySearchResults(results) – Hiển thị kết quả tìm kiếm đơn hàng.
-Trách nhiệm chính:
-
-Tạo giao diện tìm kiếm đơn hàng và hiển thị kết quả tìm kiếm cho nhân viê
+  - PurchaseOrderUI
+    - Phương thức:
+      - displayCreateOrderForm() – Hiển thị giao diện để nhân viên nhập thông tin tạo đơn hàng.
+      - displayOrderDetails(orderID) – Hiển thị chi tiết đơn hàng cho nhân viên.
+      - promptForUpdate(orderID) – Hiển thị giao diện cho phép nhân viên cập nhật đơn hàng.
+      - confirmDeleteOrder() – Yêu cầu nhân viên xác nhận việc xóa đơn hàng.
+  - SystemNotification
+    - Phương thức:
+      - displaySuccessMessage(message) – Hiển thị thông báo thành công.
+      - displayErrorMessage(message) – Hiển thị thông báo lỗi.
+      - displayWarningMessage(message) – Hiển thị cảnh báo.
+  - PurchaseOrderSearchUI
+    - Phương thức:
+      - displaySearchForm() – Hiển thị giao diện để nhân viên nhập tiêu chí tìm kiếm.
+      - displaySearchResults(results) – Hiển thị kết quả tìm kiếm đơn hàng.
 ### e. Mối quan hệ giữa các lớp
-Controller Classes:
-
-PurchaseOrderController phụ thuộc vào PurchaseOrder, PurchaseOrderService, và PurchaseOrderRepository để thực hiện các thao tác quản lý đơn hàng.
-OrderManagementController hợp tác với PurchaseOrderController và sử dụng OrderSearchService để thực hiện các thao tác tìm kiếm và quản lý đơn hàng nâng cao.
-Entities:
-
-PurchaseOrder có mối quan hệ 1-n với Customer (một đơn hàng thuộc về một khách hàng) và Aggregation với Product (một đơn hàng có thể chứa nhiều sản phẩm).
-PurchaseOrder có mối quan hệ 1-1 với CommissionedEmployee (một nhân viên chịu trách nhiệm cho một đơn hàng).
-Boundary Classes:
-
-PurchaseOrderUI, SystemNotification, và PurchaseOrderSearchUI là các lớp giao diện người dùng và thông báo, chúng hợp tác với các lớp Controller (như PurchaseOrderController và OrderManagementController) để thực hiện các thao tác liên quan đến đơn hàng và hiển thị thông tin cho người dùng.
+- Controller Classes:
+  - PurchaseOrderController phụ thuộc vào PurchaseOrder, PurchaseOrderService, và PurchaseOrderRepository để thực hiện các thao tác quản lý đơn hàng.
+  - OrderManagementController hợp tác với PurchaseOrderController và sử dụng OrderSearchService để thực hiện các thao tác tìm kiếm và quản lý đơn hàng nâng cao.
+- Entities:
+  - PurchaseOrder có mối quan hệ 1-n với Customer (một đơn hàng thuộc về một khách hàng) và Aggregation với Product (một đơn hàng có thể chứa nhiều sản phẩm).
+  - PurchaseOrder có mối quan hệ 1-1 với CommissionedEmployee (một nhân viên chịu trách nhiệm cho một đơn hàng).
+- Boundary Classes:
+  - PurchaseOrderUI, SystemNotification, và PurchaseOrderSearchUI là các lớp giao diện người dùng và thông báo, chúng hợp tác với các lớp Controller (như   -        - PurchaseOrderController và OrderManagementController) để thực hiện các thao tác liên quan đến đơn hàng và hiển thị thông tin cho người dùng.
 
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![BieuDoLopPhanTich](https://www.planttext.com/api/plantuml/png/L50xhi903Enz2YiD5HUWWYmyYGA1a3Y0IVnULjeFiXqXpaR1aRW2MOBWKRYOyNWyzlrwcwkHM1y3m0JhtAUMv88ka2eh7Dz4Zj6h-fouNSLJo1VcTJAMNseOIN7nqUvwQJfItahByfCbbdvT_5rE9Za4bd43D2E16_B9XleQ_QSU35mnM2Npzee7F8AlcQ9S5kMU0zaGLpj_KbZWT8eEPrWzGrDZYcTlNGNrktCO3gx05RmiU4E9_We5SqxjyqC03m000F__0m00)
 
+## 6.Run Payroll
+### a. Các lớp phân tích
+- Lớp Boundary:  PayrollInterface, BankSystemInterface
+- Lớp Controller: RunPayrollController
+- Lớp entities: Employee, Payroll
+### b. Biểu đồ Sequence
+![RunPayroll](https://www.planttext.com/api/plantuml/png/X9F1Jjmm48RlVefvWQht7YeskwlI6oezqAF9fciBxnWvOuJFFN3Wn1kGLbLLf1Kz9weukE8z_0HzXOx3Xi22IYwHnj_y_--Pv6ztirEJTEHNHWXPadMm9uEpnamMAusw9YUvACIXzRYGBWp7xv4gzrcM5SWQ9kDn8V5eFzHKhHuHXIWj4ZV21uyRYUbTnLGk4rDH8MaAC5yT6nkglcqs53SjkJONuhc8yEejJE0D5Acz9lXpaTeV7agLsYR0OMg_uHBCxQ_R1fTYajafiv_Y5JCzUPgwDPZuUvkTPdR6x4Vd0vpwr7udMAJk6enEtPa7LF4hmecELtW7ppFCjdPRQdul5TUeW6niS3ZafFQfLBxFBjjyGI2LkdCWny9CaugDtjONqX3igOrWRlXPyakENl6IVNpe1O-KpUq2-EdD2ZPxnrFGiDJIvZkUbmfmcJEfUCa66Is6sHt4fkJ4gLtZmmPHcRfwCSMnqgczyKFqrniTac7CCxkVunRDtyH2Z8lPjHmEg5_CSylB-pZuttQVJFan16eq46A7pVFFyWy00F__0m00)
+### c. Nhiệm vụ của từng lớp phân tích:
+- PayrollInterface: Cung cấp giao diện để hệ thống hiển thị trạng thái và kết quả khi chạy bảng lương. Đây là lớp mà người dùng (chẳng hạn như Payroll Administrator) tương tác để xem báo cáo, xác nhận thanh toán, và thực hiện các thao tác liên quan đến bảng lương.
+- BankSystemInterface: Cung cấp giao diện để kết nối và truyền dữ liệu đến hệ thống ngân hàng để xử lý thanh toán qua chuyển khoản trực tiếp.
+-  RunPayrollController: lớp điều khiển chính trong ca sử dụng Run Payroll, chịu trách nhiệm xử lý các bước như tính toán lương, in phiếu lương, gửi giao dịch ngân hàng, v.v.
+- Employee: Đại diện cho một nhân viên trong hệ thống, bao gồm các thông tin cá nhân và thông tin thanh toán.
+- Payroll: Lớp đại diện cho bảng lương, bao gồm thông tin liên quan đến việc tính toán lương của tất cả nhân viên trong mỗi chu kỳ bảng lương.
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- PayrollInterface:
+  + payrollStatus: Trạng thái của việc chạy bảng lương (hoàn thành, lỗi, đang chờ).
+  + employeeList: Danh sách nhân viên đã nhận thanh toán.
+  + displayPayrollStatus(): Hiển thị trạng thái bảng lương.
+  + displayEmployeePaymentDetails(): Hiển thị chi tiết thanh toán của từng nhân viên.
+-BankSystemInterface:
+  + transactionStatus: Trạng thái giao dịch với hệ thống ngân hàng.
+  + sendBankTransaction(): Gửi giao dịch ngân hàng.
+  + retryBankTransaction(): Thử lại giao dịch nếu hệ thống ngân hàng không sẵn sàng.
+- RunPayrollController:
+  + payrollDate: Ngày bảng lương được chạy.
+  + employeeList: Danh sách nhân viên cần được thanh toán.
+  + calculatePay(): Tính toán lương cho từng nhân viên dựa trên thông tin từ thẻ chấm công, đơn hàng và thông tin nhân viên.
+  + processPayment(): Xử lý thanh toán cho nhân viên, bao gồm in phiếu lương hoặc gửi giao dịch ngân hàng.
+  + checkBankSystemStatus(): Kiểm tra trạng thái hệ thống ngân hàng và xử lý nếu hệ thống không khả dụng.
+  + deleteEmployee(): Xóa nhân viên đã bị đánh dấu xóa sau khi bảng lương đã được xử lý.
+- Employee:
+  + employeeId: Mã số nhân viên.
+  + name: Tên nhân viên.
+  + salary: Lương cơ bản của nhân viên (nếu là nhân viên lương cố định).
+  + hourlyRate: Mức lương theo giờ (nếu là nhân viên lương theo giờ).
+  + benefits: Các phúc lợi (Bảo hiểm, nghỉ phép, v.v.).
+  + paymentMethod: Phương thức thanh toán (chuyển khoản, lấy phiếu lương, v.v.).
+  + status: Trạng thái của nhân viên (đang làm việc, đã nghỉ việc, v.v.).\
+  + calculatePay(): Tính toán lương cho nhân viên.
+  + generatePaycheck(): Tạo phiếu lương cho nhân viên.
+  + sendPayment(): Gửi thanh toán cho nhân viên qua chuyển khoản ngân hàng.
+- Payroll:
+  + payrollDate: Ngày chạy bảng lương.
+  + employeePayments: Danh sách các khoản thanh toán cho nhân viên.
+  + runPayroll(): Chạy bảng lương cho tất cả nhân viên.
+  + generateReports(): Tạo báo cáo về bảng lương.
+  + processPayments(): Xử lý thanh toán cho nhân viên.
+### e. Mối quan hệ giữa các lớp
+- PayrollInterface (Giao diện với người dùng) giao tiếp với RunPayrollController để yêu cầu xử lý bảng lương.
+- RunPayrollController truy xuất và tính toán dữ liệu từ Employee và tạo đối tượng Payroll.
+- RunPayrollController gửi giao dịch đến BankSystemInterface nếu phương thức thanh toán là chuyển khoản.
+- RunPayrollController tạo phiếu lương nếu phương thức thanh toán là phiếu lương/nhận tay.
+- PayrollInterface hiển thị kết quả cho người dùng sau khi bảng lương hoàn tất.
+### f. Biểu đồ lớp mô tả lớp phân tích
+![RunPayroll](https://www.planttext.com/api/plantuml/png/L8x13S8m34Nldi8BT8SsQG_S44nWMYCX4WSbpY6pzS18h413Wn2d9xt_l-NN-koJKjJi7S0bP5ae5ZnIYS6vWoZ7AysCb73unORaVYv9sVyr3Cn1T1lYAKixONVZEDQ61HQzQS79Frme_9cDNzacrKq00tOTMWJJQ2l77LlSioprwJS0003__mC0)
