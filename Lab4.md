@@ -52,3 +52,19 @@
 #### Sequence diagrams của ca sử dụng Run Payroll
 
 ![RP](https://www.planttext.com/api/plantuml/png/f9LDRi8m48NtEON5Yahq0brKKEW2YKf8eGSOd25OE7PaJohbR5tqIBr2JUmGaJXLex8RPzxdDpyatvzVIqjWg2fa0foqOMbj2OkrrFooLOJc11oJqgK8BafGn6Pxg8sMaksDvcYjK3bBgwDjT3C6beM4s-6zV0C4Hx3O4xN78oh7v6Vab_Q29hXFUG5r6Pe9fnqsYLN87fy7jjaJ8oFo74ru4WgUFoJ98DVf1nKuG8wqalArAAMk4G-YG0uckoA6sN4B1gaogbLULNFiuqOCHMWS9Aya4AOWmGYqCTW8gsbvKvD2un3jKOInO3RmlJKl7UcHXOyRQuC4Gjfv6UATi3IrLwdZfGHKJPfKLMQ-fYRRoqiVRRE5Mq0_VCncK_syD-JV7VMtr8bBVw7BBb1HloK9I6BR4mkFsHlIMMTC-8Ld1mFAdj0apFq6yFY553JDQjG7lU9SLyERnuYH-fKcSQg3nQwdNUHfVnsHrFc0rSudWfqsfPtERoD2wLvFqUQkmPudUqQLkMPrW_Hnryr_65LPV9-YxxYsWzVijNR_MIIXbSCi7UVw1VW1003__mC0)
+
+## 3. Describe persistence-related behavior
+
+### Các hành vi persistence-related của hệ thống có thể được mô tả bằng cách tập trung vào cách dữ liệu được lưu trữ và truy xuất:
+
+- Các lớp liên quan đến lưu trữ:
+  - Employee: Lưu thông tin cơ bản như tên, địa chỉ, và phương thức thanh toán.
+  - Timecard: Ghi lại dữ liệu giờ làm việc của nhân viên làm việc theo giờ.
+  - Đối tượng Employee và Timecard được lưu trữ liên tục trong cơ sở dữ liệu. Mỗi Employee có một mã định danh duy nhất (empID), và các bản ghi Timecard liên quan được lưu trong bảng riêng, liên kết thông qua empID.
+  - PurchaseOrder: Lưu thông tin các đơn đặt hàng của nhân viên hưởng hoa hồng.
+  - Paycheck: Lưu thông tin về các phiếu trả lương đã được tạo.
+  - Project: Được lưu trong một bảng riêng và liên kết với Timecard thông qua charge codes.
+- Hành vi lưu trữ:
+  - Gửi phiếu chấm công (Timecard): Khi nhân viên gửi Timecard, hệ thống lưu thông tin giờ làm việc, mức lương giờ, và trạng thái (draft hoặc submitted) vào cơ sở dữ liệu, đảm bảo dữ liệu luôn chính xác và đồng nhất.
+  - Tạo phiếu trả lương (Paycheck): Sau khi tạo Paycheck, hệ thống lưu chi tiết phiếu trả lương vào lịch sử giao dịch, giúp theo dõi và kiểm tra khi cần thiết.
+  - Cập nhật thông tin nhân viên (Employee Information): Các thông tin như phương thức thanh toán, tài khoản ngân hàng, và mức lương được cập nhật thường xuyên. Bất kỳ thay đổi nào cũng sẽ được lưu ngay lập tức trong cơ sở dữ liệu để phản ánh đúng tình trạng hiện tại của nhân viên.
