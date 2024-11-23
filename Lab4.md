@@ -68,3 +68,30 @@
   - Gửi phiếu chấm công (Timecard): Khi nhân viên gửi Timecard, hệ thống lưu thông tin giờ làm việc, mức lương giờ, và trạng thái (draft hoặc submitted) vào cơ sở dữ liệu, đảm bảo dữ liệu luôn chính xác và đồng nhất.
   - Tạo phiếu trả lương (Paycheck): Sau khi tạo Paycheck, hệ thống lưu chi tiết phiếu trả lương vào lịch sử giao dịch, giúp theo dõi và kiểm tra khi cần thiết.
   - Cập nhật thông tin nhân viên (Employee Information): Các thông tin như phương thức thanh toán, tài khoản ngân hàng, và mức lương được cập nhật thường xuyên. Bất kỳ thay đổi nào cũng sẽ được lưu ngay lập tức trong cơ sở dữ liệu để phản ánh đúng tình trạng hiện tại của nhân viên.
+
+ ## 4. Refine the flow of events description 
+
+### Luồng sự kiện trong Hệ thống tính lương có thể được tinh chỉnh, làm mịn thành các bước sau:
+- Duy trì Phiếu Chấm Công (Maintain Timecard):
+  - Nhân viên truy cập giao diện TimecardForm để nhập dữ liệu.
+  - Giao diện TimecardForm hiển thị thông tin phiếu chấm công hiện có và cho phép nhân viên nhập số giờ làm việc.
+  - TimecardController xử lý thông tin được gửi từ biểu mẫu, kiểm tra tính hợp lệ của dữ liệu, và cập nhật hồ sơ của nhân viên.
+  - Nếu phiếu chấm công đã hoàn chỉnh, nhân viên gửi phiếu qua hệ thống.
+      - TimecardController thay đổi trạng thái của phiếu từ draft sang submitted để chuẩn bị cho các bước tiếp theo trong quy trình tính lương.
+- Chạy Quy Trình Tính Lương (Run Payroll):
+  -SystemClockInterface kích hoạt quy trình tính lương vào ngày đã được định trước (payday).
+  - PayrollController thực hiện việc tính lương dựa trên từng loại nhân viên:
+    - Nhân viên theo giờ (HourlyEmployee): Lương được tính dựa trên tổng số giờ làm việc được ghi nhận và mức lương theo giờ của nhân viên.
+    - Nhân viên lương cố định (SalariedEmployee): Lương tháng được xác định dựa trên mức lương hàng năm, có điều chỉnh các khoản khấu trừ cần thiết.
+    - Nhân viên hoa hồng (CommissionedEmployee): Tiền lương được tính dựa trên tỷ lệ hoa hồng và tổng doanh thu bán hàng.
+- Hệ thống phân phối lương:
+    - Đối với nhân viên sử dụng phương thức chuyển khoản trực tiếp (direct deposit), BankSystem thực hiện các giao dịch chuyển khoản đến tài khoản ngân hàng của họ.
+    - Với nhân viên không dùng chuyển khoản, PrinterInterface sẽ tạo và in phiếu trả lương (paycheck).
+- Các phiếu trả lương (Paycheck) được lưu trữ và hệ thống hoàn tất quy trình.
+- Phiếu trả lương có thể được gửi qua thư hoặc lưu trữ trong lịch sử giao dịch để kiểm tra sau này.
+
+## 5. Unify classes and subsystems 
+
+### Thống nhất các lớp và hệ thống qua biểu đồ sau:
+
+![class](https://www.planttext.com/api/plantuml/png/b5MxRjmm4Epr5OIgf32Gj2eCntSEuiB0mGgGUe_Qqn4Ybm8V1fJ0NvOYdvHV2FMmJhoZBWaB5RkpiyETbVJxvwyxwy0uhsHc6q4j652CIx3satD6xBt3Hwwf5D-HVSYo5dW3DRByGRLITuZi2IW4599ZfT_RpZfKEVkHiN067ZP3n-1uKBMFsuALeGVLYpY1maGOgigWjObC2rtV_0dTKLTH_ZLRYFWg578mLIJ2JS6aaZM5H-sD_QPDWw7TPwd1BP9XcCxRlylOQ796Iuac4lG2KbJWy0tsxdt1xhMM2BH0-VOSyw95jMmsZpp_cBERcrkMAw0kFqsXODnW8B4nl8Sc91RCsm1zNVY_WwvFiftHF1WJBhjc_uHSkJ47oRqCIYPOwZOp3pyYRwBoTWh-buEWj2TNiAtsUucNkxGDSa8sF2zLV0dkoowvqiSXzJmMdwYZyX8a685LaW28FCW1qgrJRBHI8anSqmeDdm5hMYujMHh_PlSwShQYO3KIcdcHql2pcHKdqwzLNOpg7-kIyubgbtjy3zHSMTu-NGxn-CDXWEm1pMvScDJIfiKj-8h08keQJIneoWOphiWQGHkfm-QJGtC0ZcS21-ehBrMIOZBtJ7Z1I3jn4EFexf2g_dVn1m00__y30000)
